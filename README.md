@@ -13,8 +13,8 @@
 |birthday               |date     |null: false                 |
 
 ### Association
-- has_many: product
-- has_many: purchase
+- has_many: products
+- has_many: purchases
 
 
 ## products テーブル
@@ -25,14 +25,14 @@
 |text                   |text      |null: false                   |
 |category_id            |integer   |null: false                   |
 |status_id              |integer   |null: false                   |
-|delivery_fee           |integer   |null: false                   |
+|delivery_fee_id        |integer   |null: false                   |
 |prefecture_id          |integer   |null: false                   |
-|delivery_date          |date      |null: false                   |
+|delivery_date_id       |integer   |null: false                   |
 |user                   |references|null: false, foreign_key: true|
 
 ### Association
-- belong_to: user
-- has_one: purchase
+- belong_to: users
+- has_one: purchases
 
 
 ## purchases テーブル
@@ -42,22 +42,23 @@
 |product                |references|null: false, foreign_key: true|
 
 ### Association
-- belong_to: user
-- belong_to: product
-- has_one: delivery_info
+- belong_to: users
+- belong_to: products
+- has_one: delivery_infos
 
 
 ## delivery_infos
 |Column                 |Type      |Options                       |
 |-----------------------|----------|------------------------------|
 |receiver_name          |string    |null: false                   |
-|post_code              |integer   |null: false                   |
-|receiver_prefecture_id |integer   |null: false                   |
+|post_code              |string    |null: false                   |
+|prefecture_id          |integer   |null: false                   |
 |receiver_city          |text      |null: false                   |
-|receiver_address       |text      |null: false
+|receiver_address       |text      |null: false                   |
+|receiver_building_name |text      |null: false                   |
 |receiver_telephone     |integer   |null: false                   |
 |purchase               |references|null: false, foreign_key: true|
 
 ### Association
-- belong_to: purchase
+- belong_to: purchases
 
