@@ -52,10 +52,10 @@
 |-----------------------|----------|------------------------------|
 |post_code              |string    |null: false                   |
 |prefecture_id          |integer   |null: false                   |
-|receiver_city          |text      |null: false                   |
-|receiver_address       |text      |null: false                   |
-|receiver_building_name |text      |null: true                    |
-|receiver_telephone     |string   |null: false                   |
+|receiver_city          |string    |null: false                   |
+|receiver_address       |string    |null: false                   |
+|receiver_building_name |string    |                              |
+|receiver_telephone     |string    |null: false                   |
 |purchase               |references|null: false, foreign_key: true|
 
 ### Association
