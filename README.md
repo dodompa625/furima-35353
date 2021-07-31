@@ -31,8 +31,8 @@
 |user                   |references|null: false, foreign_key: true|
 
 ### Association
-- belong_to: users
-- has_one: purchases
+- belongs_to: user
+- has_one: purchase
 
 
 ## purchases テーブル
@@ -42,23 +42,22 @@
 |product                |references|null: false, foreign_key: true|
 
 ### Association
-- belong_to: users
-- belong_to: products
-- has_one: delivery_infos
+- belongs_to: user
+- belongs_to: product
+- has_one: delivery_info
 
 
 ## delivery_infos
 |Column                 |Type      |Options                       |
 |-----------------------|----------|------------------------------|
-|receiver_name          |string    |null: false                   |
 |post_code              |string    |null: false                   |
 |prefecture_id          |integer   |null: false                   |
 |receiver_city          |text      |null: false                   |
 |receiver_address       |text      |null: false                   |
-|receiver_building_name |text      |null: false                   |
-|receiver_telephone     |integer   |null: false                   |
+|receiver_building_name |text      |null: true                    |
+|receiver_telephone     |string   |null: false                   |
 |purchase               |references|null: false, foreign_key: true|
 
 ### Association
-- belong_to: purchases
+- belongs_to: purchase
 
