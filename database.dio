@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="J4lHPqqyv-jxHkiEatdg" name="ページ1">
-        <mxGraphModel dx="554" dy="741" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+        <mxGraphModel dx="836" dy="618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -15,7 +15,7 @@
                 <mxCell id="302" value="productsテーブル" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="600" y="40" width="240" height="250" as="geometry"/>
                 </mxCell>
-                <mxCell id="303" value="product_name&#10;image&#10;price&#10;text&#10;seller_name&#10;category&#10;status&#10;delivery_fee&#10;prefecture&#10;delivery_date&#10;user&#10;&#10;belong_to: user&#10;has_one: purchase" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="302" vertex="1">
+                <mxCell id="303" value="product_name&#10;price&#10;text&#10;category_id&#10;status_id&#10;delivery_fee&#10;prefecture_id&#10;delivery_date&#10;user&#10;&#10;belong_to: user&#10;has_one: purchase" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="302" vertex="1">
                     <mxGeometry y="26" width="240" height="224" as="geometry"/>
                 </mxCell>
                 <mxCell id="309" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startSize=42;endSize=42;exitX=1.009;exitY=0.299;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4" edge="1">
@@ -27,13 +27,13 @@
                 <mxCell id="310" value="purchasesテーブル" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="525" y="440" width="305" height="220" as="geometry"/>
                 </mxCell>
-                <mxCell id="311" value="customer_name&#10;user&#10;product&#10;&#10;&#10;belong_to: user&#10;belong_to: product&#10;has_one: delivery_info&#10;&#10;保存しない（毎回記入）&#10;payment&#10;customer_address(zipcode/prefecture/city/no./tel)" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="310" vertex="1">
+                <mxCell id="311" value="user&#10;product&#10;&#10;&#10;belong_to: user&#10;belong_to: product&#10;has_one: delivery_info&#10;&#10;保存しない（毎回記入）&#10;payment&#10;customer_address(zipcode/prefecture/city/no./tel)" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="310" vertex="1">
                     <mxGeometry y="26" width="305" height="194" as="geometry"/>
                 </mxCell>
                 <mxCell id="316" value="delivery_infosテーブル" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="100" y="460" width="220" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="317" value="receiver_name&#10;receiver_address&#10;receiver_telephone&#10;purchase&#10;&#10;belong_to: purchase" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="316" vertex="1">
+                <mxCell id="317" value="receiver_name&#10;post_code&#10;receiver_prefecture_id&#10;receiver_city&#10;receiver_address&#10;receiver_telephone&#10;purchase&#10;&#10;belong_to: purchase" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="316" vertex="1">
                     <mxGeometry y="26" width="220" height="144" as="geometry"/>
                 </mxCell>
                 <mxCell id="320" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startSize=42;endSize=42;entryX=-0.007;entryY=0.174;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.948;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4" target="311" edge="1">

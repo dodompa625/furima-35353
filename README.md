@@ -5,7 +5,7 @@
 |-----------------------|---------|----------------------------|
 |nickname               |string   |null: false                 |
 |email                  |string   |null: false, unique: true   |
-|encrypted_password     |string   |null: false|
+|encrypted_password     |string   |null: false                 |
 |first_name             |string   |null: false                 |
 |last_name              |string   |null: false                 |
 |first_name_kana        |string   |null: false                 |
@@ -18,19 +18,17 @@
 
 
 ## products テーブル
-|Column                 |Type     |Options                       |
-|-----------------------|---------|------------------------------|
-|product_name           |string   |null: false                   |
-|image                  |         |                   |
-|price                  |integer  |null: false                   |
-|text                   |text     |null: false                   |
-|seller_name            |string   |null: false                   |
-|category               |string   |null: false                   |
-|status                 |string   |null: false                   |
-|delivery_fee           |integer  |null: false                   |
-|prefecture             |string   |null: false                   |
-|delivery_date          |date     |null: false                   |
-|user                   |reference|null: false, foreign_key: true|
+|Column                 |Type      |Options                       |
+|-----------------------|----------|------------------------------|
+|product_name           |string    |null: false                   |
+|price                  |integer   |null: false                   |
+|text                   |text      |null: false                   |
+|category_id            |integer   |null: false                   |
+|status_id              |integer   |null: false                   |
+|delivery_fee           |integer   |null: false                   |
+|prefecture_id          |integer   |null: false                   |
+|delivery_date          |date      |null: false                   |
+|user                   |references|null: false, foreign_key: true|
 
 ### Association
 - belong_to: user
@@ -38,11 +36,10 @@
 
 
 ## purchases テーブル
-|Column                 |Type     |Options                       |
-|-----------------------|---------|------------------------------|
-|customer_name          |string   |null: false                   |
-|user                   |reference|null: false, foreign_key: true|
-|product                |reference|null: false, foreign_key: true|
+|Column                 |Type      |Options                       |
+|-----------------------|----------|------------------------------|
+|user                   |references|null: false, foreign_key: true|
+|product                |references|null: false, foreign_key: true|
 
 ### Association
 - belong_to: user
@@ -51,12 +48,15 @@
 
 
 ## delivery_infos
-|Column                 |Type     |Options                       |
-|-----------------------|---------|------------------------------|
-|receiver_name          |string   |null: false                   |
-|receiver_address       |text     |null: false                   |
-|receiver_telephone     |integer  |null: false                   |
-|purchase               |reference|null: false, foreign_key: true|
+|Column                 |Type      |Options                       |
+|-----------------------|----------|------------------------------|
+|receiver_name          |string    |null: false                   |
+|post_code              |integer   |null: false                   |
+|receiver_prefecture_id |integer   |null: false                   |
+|receiver_city          |text      |null: false                   |
+|receiver_address       |text      |null: false
+|receiver_telephone     |integer   |null: false                   |
+|purchase               |references|null: false, foreign_key: true|
 
 ### Association
 - belong_to: purchase
