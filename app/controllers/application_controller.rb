@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :move_to_index, except: [:index, :show]
 
   private
   def configure_permitted_parameters
@@ -14,9 +13,3 @@ class ApplicationController < ActionController::Base
     end
   end
 end
-
-# def move_to_index
-#   unless user_signed_in?
-#     redirect_to action: :index
-#   end
-# end

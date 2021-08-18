@@ -11,12 +11,12 @@
   </div>
 
   <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-  <% render 'shared/error_messages', model: f.object %>
+  <%= render 'shared/error_messages', model: f.object %>
   <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
   <div class="form-group">
     <div class='form-text-wrap'>
-      <label class="form-text">ニックネーム (最低6文字)</label>
+      <label class="form-text">ニックネーム</label>
       <span class="indispensable">必須</span>
     </div>
     <%= f.text_field :nickname, autofocus: true, length: {minimum: 6, maximum: 40}, class:"input-default", id:"nickname", placeholder:"例) furima太郎" %>
