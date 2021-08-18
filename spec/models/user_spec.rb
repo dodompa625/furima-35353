@@ -2,8 +2,102 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "ユーザー新規登録" do
-   context 'ユーザ登録に失敗する場合' do
+   context 'ユーザ登録に成功する場合' do
 
+    it "全て正しく入力されていれば登録される" do
+      user = build(:user)
+      expect(user).to be_valid
+    end
+
+    it "nicknameを入力すると登録できる" do
+      user = build(:user,  nickname: "あいうえお")
+      expect(user).to be_valid
+    end
+
+    it "emailを入力すると登録できる" do
+      user = build(:user, email: "aaa@gmail.com")
+      expect(user).to be_valid
+    end
+
+    it "emailは一意性だと登録できる" do
+      user = FactoryBot.create(:user, email: 'test@test.co.jp')
+      another_user = FactoryBot.build(:user, email: 'kkk@test.co.jp')
+      expect(another_user).to be_valid
+    end
+
+    it "emailは＠を含むと登録できる" do
+      user = build(:user, email: "aaa@gmail.com")
+      expect(user).to be_valid
+    end
+
+    it "passwordを入力すると登録できる" do
+      user = build(:user, password: "aiueo123")
+      expect(user).to be_valid
+    end
+
+    it 'passwordが6文字以上であれば登録できる' do
+      user = build(:user, password: "aiueo123")
+      expect(user).to be_valid
+    end
+
+    it "パスワードとパスワード（確認用）の値が一致していると登録できる" do
+      user = build(:user, password: "aiueo123", password_confirmation: "aiueo123")
+      expect(user).to be_valid
+    end
+
+    it "パスワードは、半角英数字混合で入力すると登録できる" do
+      user = build(:user, password: "aiueo123")
+      expect(user).to be_valid
+    end
+
+    it 'first_nameを入力すると登録できる' do
+      user = build(:user, first_name: "雅子")
+      expect(user).to be_valid
+    end
+
+    it "first_nameは、全角（漢字・ひらがな・カタカナ）入力すると登録できる" do
+      user = build(:user, first_name: "まさこ")
+      expect(user).to be_valid
+    end
+    
+    it 'first_name_kanaを入力すると登録できる' do
+      user = build(:user, first_name_kana: "マサコ")
+      expect(user).to be_valid
+    end
+
+    it "first_name_kanaは、カタカナ入力すると登録できる" do
+      user = build(:user, first_name_kana: "マサコ")
+      expect(user).to be_valid
+    end
+
+    it 'last_nameを入力すると登録できる' do
+      user = build(:user, last_name: "田中")
+      expect(user).to be_valid
+    end
+
+    it "last_nameは、全角（漢字・ひらがな・カタカナ）入力すると登録できる" do
+      user = build(:user, last_name: "たなか")
+      expect(user).to be_valid
+    end
+
+    it 'last_name_kanaを入力すると登録できる' do
+      user = build(:user, last_name_kana: "タナカ")
+      expect(user).to be_valid
+    end
+
+    it "last_name_kanaは、全角（カタカナ）入力すると登録できる" do
+      user = build(:user, first_name_kana: "タナカ")
+      expect(user).to be_valid
+    end
+
+    it 'birthdayを入力すると登録できる' do
+      user = build(:user, birthday: "2020-02-02")
+      expect(user).to be_valid
+    end
+   end
+
+
+   context 'ユーザ登録に失敗する場合' do
 
     it "nicknameが空だと登録できない" do
       user = build(:user, nickname: nil)
@@ -131,100 +225,4 @@ RSpec.describe User, type: :model do
   end
 end
 
-RSpec.describe User, type: :model do
-  describe "ユーザー新規登録" do
-   context 'ユーザ登録に成功する場合' do
 
-    it "全て正しく入力されていれば登録される" do
-      user = build(:user)
-      expect(user).to be_valid
-    end
-
-    it "nicknameを入力すると登録できる" do
-      user = build(:user,  nickname: "あいうえお")
-      expect(user).to be_valid
-    end
-
-    it "emailを入力すると登録できる" do
-      user = build(:user, email: "aaa@gmail.com")
-      expect(user).to be_valid
-    end
-
-    it "emailは一意性だと登録できる" do
-      user = FactoryBot.create(:user, email: 'test@test.co.jp')
-      another_user = FactoryBot.build(:user, email: 'kkk@test.co.jp')
-      expect(another_user).to be_valid
-    end
-
-    it "emailは＠を含むと登録できる" do
-      user = build(:user, email: "aaa@gmail.com")
-      expect(user).to be_valid
-    end
-
-    it "passwordを入力すると登録できる" do
-      user = build(:user, password: "aiueo123")
-      expect(user).to be_valid
-    end
-
-    it 'passwordが6文字以上であれば登録できる' do
-      user = build(:user, password: "aiueo123")
-      expect(user).to be_valid
-    end
-
-    it "パスワードとパスワード（確認用）の値が一致していると登録できる" do
-      user = build(:user, password: "aiueo123", password_confirmation: "aiueo123")
-      expect(user).to be_valid
-    end
-
-    it "パスワードは、半角英数字混合で入力すると登録できる" do
-      user = build(:user, password: "aiueo123")
-      expect(user).to be_valid
-    end
-
-    it 'first_nameを入力すると登録できる' do
-      user = build(:user, first_name: "雅子")
-      expect(user).to be_valid
-    end
-
-    it "first_nameは、全角（漢字・ひらがな・カタカナ）入力すると登録できる" do
-      user = build(:user, first_name: "まさこ")
-      expect(user).to be_valid
-    end
-    
-    it 'first_name_kanaを入力すると登録できる' do
-      user = build(:user, first_name_kana: "マサコ")
-      expect(user).to be_valid
-    end
-
-    it "first_name_kanaは、カタカナ入力すると登録できる" do
-      user = build(:user, first_name_kana: "マサコ")
-      expect(user).to be_valid
-    end
-
-    it 'last_nameを入力すると登録できる' do
-      user = build(:user, last_name: "田中")
-      expect(user).to be_valid
-    end
-
-    it "last_nameは、全角（漢字・ひらがな・カタカナ）入力すると登録できる" do
-      user = build(:user, last_name: "たなか")
-      expect(user).to be_valid
-    end
-
-    it 'last_name_kanaを入力すると登録できる' do
-      user = build(:user, last_name_kana: "タナカ")
-      expect(user).to be_valid
-    end
-
-    it "last_name_kanaは、全角（カタカナ）入力すると登録できる" do
-      user = build(:user, first_name_kana: "タナカ")
-      expect(user).to be_valid
-    end
-
-    it 'birthdayを入力すると登録できる' do
-      user = build(:user, birthday: "2020-02-02")
-      expect(user).to be_valid
-    end
-   end
-  end
-end
