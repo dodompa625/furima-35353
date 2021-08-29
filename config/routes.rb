@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'items/index'
-  root to: "items#index"
+    devise_for :users
+    root to: "products#index"
+    resources :products, only: [:new, :create]
+
+    get 'products/index'
+    post'products/create'
+    get 'users/index'
 end
-
-
-# Rails.application.routes.draw do
-#   devise_for :users, controllers: {registrations: 'users/registrations'}
-#   root to: "registrations#index"
-# end

@@ -63,3 +63,7 @@ end
 gem 'devise'
 
 gem 'rspec-rails', '~> 4.0.0'
+
+gem 'active_hash'
+
+gem 'pry-rails'
