@@ -1,13 +1,9 @@
 class ProductsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
-
-  def move_to_index
-    redirect_to new_user_session_path unless user_signed_in?
-  end
+  before_action :authenticate_user!, except: [:show, :index]
   
-  def index
-    @products = Product.all
-  end
+  # def index
+  #   @products = Product.all
+  # end
 
   def new
     @product = Product.new
