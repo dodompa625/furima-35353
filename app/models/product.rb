@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :user
   # has_one: purchase
-  has_one_attached :image
+  has_one_attached :product_image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
     belongs_to_active_hash :category
@@ -23,6 +23,5 @@ class Product < ApplicationRecord
     validates :delivery_fee_id
     validates :prefecture_id
     validates :delivery_date_id
-    
   end
 end
