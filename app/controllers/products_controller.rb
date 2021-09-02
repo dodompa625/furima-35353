@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only:[:show, :move_to_index]
   before_action :authenticate_user!, except: [:show, :index]
   
   def index
@@ -16,6 +17,14 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @product = Product.find(params[:id])
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 
   private
