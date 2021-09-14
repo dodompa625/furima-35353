@@ -14,7 +14,7 @@
 
 ### Association
 - has_many: products
-- has_many: purchases
+- has_many: orders
 
 
 ## products テーブル
@@ -32,10 +32,10 @@
 
 ### Association
 - belongs_to: user
-- has_one: purchase
+- has_one: order
 
 
-## purchases テーブル
+## orders テーブル
 |Column                 |Type      |Options                       |
 |-----------------------|----------|------------------------------|
 |user                   |references|null: false, foreign_key: true|
@@ -44,20 +44,29 @@
 ### Association
 - belongs_to: user
 - belongs_to: product
-- has_one: delivery_info
+- has_one: address
+- has_one: card
 
 
-## delivery_infos
+## Addresses
 |Column                 |Type      |Options                       |
 |-----------------------|----------|------------------------------|
 |post_code              |string    |null: false                   |
 |prefecture_id          |integer   |null: false                   |
-|receiver_city          |string    |null: false                   |
-|receiver_address       |string    |null: false                   |
-|receiver_building_name |string    |                              |
+|city                   |string    |null: false                   |
+|house_number           |string    |null: false                   |
+|building_name          |string    |                              |
 |receiver_telephone     |string    |null: false                   |
-|purchase               |references|null: false, foreign_key: true|
+|order                  |references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to: purchase
+- belongs_to: order
 
+## cards
+|Column                 |Type      |Options                       |
+|-----------------------|----------|------------------------------|
+|user_id                |string    |null: false                   |
+|card_id                |string    |null: false                   |
+|user                   |references|null: false, foreign_key: true|
+
+### Association

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_020711) do
+ActiveRecord::Schema.define(version: 2021_09_11_030451) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,28 @@ ActiveRecord::Schema.define(version: 2021_09_01_020711) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "house_number", null: false
+    t.string "building_name"
+    t.string "receiver_telephone", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_addresses_on_order_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "product_name", null: false
     t.integer "price", null: false
@@ -45,7 +67,6 @@ ActiveRecord::Schema.define(version: 2021_09_01_020711) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "product_image"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -68,5 +89,8 @@ ActiveRecord::Schema.define(version: 2021_09_01_020711) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "orders"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
 end
