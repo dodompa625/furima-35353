@@ -71,6 +71,31 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
+
+      it "電話番号が9桁以下では購入できない" do
+        @order_address.receiver_telephone = "090123456"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Receiver telephone is invalid")
+      end
+
+      it "電話番号が12桁以上では購入できない" do
+        @order_address.receiver_telephone = "090123456789"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Receiver telephone is invalid")
+      end
+
+      it "userが紐付いていなければ購入できない" do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "itemが紐付いていなければ購入できない" do
+        @order_address.product_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Product can't be blank")
+      end
+
     end
   end
 end
