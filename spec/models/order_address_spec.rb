@@ -2,52 +2,23 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @order_address = FactoryBot.build(:order_address)
+    user = FactoryBot.create(:user)
+    product = FactoryBot.create(:product)
+    @order_address = FactoryBot.build(:order_address, user_id: user.id, product_id: product.id)
+    sleep(0.1)
   end
 
   describe "購入" do
 
     context '購入に成功する場合' do
-      it "全て正しく入力されていれば出品される" do
-        @order_address = build(:order_address)
+      it "全て正しく入力されていれば購入できる" do
         expect(@order_address).to be_valid
       end
 
-      it "postal_codeを入力すると保存できる" do
-        @order_address = build(:order_address, postal_code: "123-2345")
+      it "建物名を入力しなくても購入できる" do
+        @order_address.building_name = nil
         expect(@order_address).to be_valid
       end
-
-      it "prefectureを選択すると保存できる" do
-        @order_address = build(:order_address, prefecture_id: 2)
-        expect(@order_address).to be_valid
-      end
-
-      it "cityを入力すると保存できる" do
-        @order_address = build(:order_address, city:  "品川区")
-        expect(@order_address).to be_valid
-      end
-
-      it "house_numberを入力すると保存できる" do
-        @order_address = build(:order_address, house_number: "東品川1-1")
-        expect(@order_address).to be_valid
-      end
-
-      it "building_nameは空でも保存できること" do
-        @order_address = build(:order_address, building_name: nil)
-        expect(@order_address).to be_valid
-      end
-
-      it "receiver_telephoneを入力すると保存できる" do
-        @order_address = build(:order_address, receiver_telephone: 12345678910)
-        expect(@order_address).to be_valid
-      end
-
-      it "tokenがあれば保存ができること" do
-        @order_address = build(:order_address, token: "tok_abcdefghijk00000000000000000")
-        expect(@order_address).to be_valid
-      end
-
     end
 
 

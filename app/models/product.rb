@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :user
-  # has_one: purchase
-  has_one_attached :product_image
+  has_one :order
+  has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
     belongs_to_active_hash :category
@@ -11,7 +11,7 @@ class Product < ApplicationRecord
     belongs_to_active_hash :delivery_date
 
   with_options presence: true do
-    validates :product_image
+    validates :image
     validates :product_name, length: {minimum:1, maximum:40}
     validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10000000}, format:{with: /\A[0-9]+\z/}
     validates :text, length: {maximum:1000}
