@@ -25,7 +25,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-
+    unless current_user.id == @product.user_id && Order.exists?(@product.id) == false
+      redirect_to root_path
+    end
   end
 
   def update
@@ -43,7 +45,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:product_image, :product_name, :text, :price, :text, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :delivery_date_id).merge(user_id: current_user.id)
+    params.require(:product).permit(:image, :product_name, :text, :price, :text, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :delivery_date_id).merge(user_id: current_user.id)
   end
 
   def set_product

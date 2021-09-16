@@ -14,7 +14,7 @@ RSpec.describe Product, type: :model do
       end
 
         it "商品画像をアップロードすると登録できる" do
-        @product = build(:product, product_image: "product.img")
+        @product = build(:product, image: "product.img")
         expect(@product).to be_valid
       end
 
@@ -63,9 +63,9 @@ RSpec.describe Product, type: :model do
     context '商品出品に失敗する場合' do
   
       it "商品画像が空だと登録できない" do
-        @product = build(:product, product_image: nil)
+        @product.image = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("Product image can't be blank")
+        expect(@product.errors.full_messages).to include("Image can't be blank")
       end
   
       it "商品名が空だと登録できない" do
